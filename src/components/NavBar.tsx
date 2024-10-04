@@ -15,33 +15,12 @@ import LoginIcon from '@mui/icons-material/Login';
 import HowToRegIcon from '@mui/icons-material/HowToReg'; // Icon for Sign In
 
 export default function SimpleBottomNavigation() {
-  const [value, setValue] = React.useState(0);
-
+  const [value, setValue] = React.useState('/');
   const router = useRouter(); // Next.js router for navigation
 
-  const handleNavigation = (newValue: number) => {
+  const handleNavigation = (newValue: "string") => {
     setValue(newValue);
-    
-    // Navigate based on the selected option
-    switch (newValue) {
-      case 0:
-        router.push('/');
-        break;
-      case 1:
-        router.push('/profil');
-        break;
-      case 2:
-        router.push('/prispevok');
-        break;
-      case 3:
-        router.push('/auth/prihlasenie');
-        break;
-      case 4:
-        router.push('/auth/registracia');
-        break;
-      default:
-        break;
-    }
+    router.push(newValue);
   };
 
 
@@ -54,11 +33,11 @@ export default function SimpleBottomNavigation() {
           handleNavigation(newValue); // Handle navigation on change
         }}
       >
-        <BottomNavigationAction label="Domov" icon={<HomeIcon />} />
-        <BottomNavigationAction label="Profil" icon={<PersonIcon />} />
-        <BottomNavigationAction label="Prispevky" icon={<AddCircleIcon />} />
-        <BottomNavigationAction label="prihlasenie" icon={<LoginIcon />} />
-        <BottomNavigationAction label="Registracia" icon={<HowToRegIcon />} />
+        <BottomNavigationAction label="Domov" value={'/'} icon={<HomeIcon />} />
+        <BottomNavigationAction label="Profil" value={'/profil'} icon={<PersonIcon />} />
+        <BottomNavigationAction label="Prispevky" value={'/prispevok'} icon={<AddCircleIcon />} />
+        <BottomNavigationAction label="prihlasenie" value={'/auth/prihlasenie'} icon={<LoginIcon />} />
+        <BottomNavigationAction label="Registracia" value={'/auth/registracia'} icon={<HowToRegIcon />} />
       </BottomNavigation>
     </Box>
   );
